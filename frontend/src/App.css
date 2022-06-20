@@ -1,0 +1,70 @@
+.actionText {
+    font-weight: bolder;
+    margin-bottom: 2em;
+  }
+  
+  .mainWrapper {
+    padding-left: 6em;
+    padding-right: 6em;
+    text-align: center;
+    animation: opacityAnimation 2s;
+  }
+  
+  .header {
+    letter-spacing: 0.1em;
+    text-transform: capitalize;
+  }
+  
+  .listElement {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  
+  .fade {
+    animation: opacityAnimationReverse 500ms;
+  }
+  
+  .customInput {
+    background: transparent;
+    width: 40%;
+    border: none;
+    border-bottom: 2px solid black;
+    margin-right: 1em;
+  }
+  
+  .customInput:focus-visible {
+    outline: none;
+  }
+  
+  .actionWrapper {
+    padding-bottom: 2em;
+    padding-top: 2em;
+  }
+  
+  .customButton {
+    background: transparent;
+    border: none;
+    font-weight: bold;
+  }
+  
+  .customButton:hover {
+    color: azure;
+  }
+  
+  @keyframes opacityAnimation {
+    from {
+      opacity: 0%;
+    }
+    to {
+      opacity: 100%;
+    }
+  }
+  
+  @keyframes opacityAnimationReverse {
+    from {
+      opacity: 100%;
+    }
+    to {
+      opacity: 0%;
+    }
+  }

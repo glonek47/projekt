@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BsFillTrashFill } from "react-icons/bs";
+import "./App.css";
+import { BsTrash} from "react-icons/bs";
 
 function App() {
   const [list, setList] = useState([]);
@@ -40,34 +41,45 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{ paddingLeft: "6em", paddingRight: "6em", textAlign: "center", backgroundColor: "grey" }}
-    >
-      <h3>Shopping list</h3>
-      {list?.map((x) => {
+    <div className="mainWrapper">
+      <h3 className="header">SHOPPING LIST</h3>
+      {list?.length === 0 && <label>NO ITEMS IN SHOPPING LIST</label>}
+      {list?.map((item) => {
         return (
-          <div key={x.Id} style={{ paddingTop: "1em", paddingBottom: "1em" }}>
-            <label style={{ paddingRight: "1em" }}>{x.Name}</label>
-            <BsFillTrashFill
-              onClick={() => handleProductRemove(x.Id)}
-              size={19}
-            />
-          </div>
+          <ListElement item={item} handleProductRemove={handleProductRemove} />
         );
       })}
-      <div style={{ paddingBottom: "2em" }}>
-        <label>Enter product</label>
-        <br />
-
+      <div className="actionWrapper">
         <input
           type="text"
+          className="customInput"
           onChange={(e) => setLabelText(e.target.value)}
           value={labelText}
         />
-        <button onClick={handleAddProduct}>Add</button>
+        <button className="customButton" onClick={handleAddProduct}>
+          ADD PRODUCT
+        </button>
       </div>
     </div>
   );
 }
+
+const ListElement = ({ item, handleProductRemove }) => {
+  const [fade, setFade] = useState(false);
+  return (
+    <div key={item.Id} className={`${fade ? "fade" : ""} listElement`}>
+      <label style={{ paddingRight: "1em" }}>{item.Name}</label>
+      <BsTrash
+        onClick={() => {
+          setFade(true);
+          setTimeout(() => {
+            handleProductRemove(item.Id);
+          }, [520]);
+        }}
+        size={19}
+      />
+    </div>
+  );
+};
 
 export default App;
